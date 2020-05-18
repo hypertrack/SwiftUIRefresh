@@ -62,6 +62,12 @@ private struct PullToRefresh: UIViewRepresentable {
             guard let tableView = self.tableView(entry: uiView) else {
                 return
             }
+
+            if tableView.refreshControl == nil {
+                let refreshControl = UIRefreshControl()
+                refreshControl.addTarget(context.coordinator, action: #selector(Coordinator.onValueChanged), for: .valueChanged)
+                tableView.refreshControl = refreshControl
+            }
             
             if let refreshControl = tableView.refreshControl {
                 if self.isShowing {
@@ -69,12 +75,7 @@ private struct PullToRefresh: UIViewRepresentable {
                 } else {
                     refreshControl.endRefreshing()
                 }
-                return
             }
-            
-            let refreshControl = UIRefreshControl()
-            refreshControl.addTarget(context.coordinator, action: #selector(Coordinator.onValueChanged), for: .valueChanged)
-            tableView.refreshControl = refreshControl
         }
     }
     
