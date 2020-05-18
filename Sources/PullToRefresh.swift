@@ -73,6 +73,7 @@ private struct PullToRefresh: UIViewRepresentable {
                 if self.isShowing {
                     if !refreshControl.isRefreshing {
                         let parentView = self.parentView(entry: uiView)
+
                         parentView?.setContentOffset(CGPoint(x: 0, y: parentView.contentOffset.y - refreshControl.frame.size.height), animated: true)
                     }
 
