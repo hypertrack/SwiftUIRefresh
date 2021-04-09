@@ -28,7 +28,6 @@ private struct PullToRefresh: UIViewRepresentable {
         
         @objc
         func onValueChanged() {
-            isShowing.wrappedValue = true
             onRefresh()
         }
     }
